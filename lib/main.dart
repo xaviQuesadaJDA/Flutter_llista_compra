@@ -68,7 +68,7 @@ class ElMeuBody extends StatelessWidget {
           child: TextField(
             controller: textEditingController,
             decoration: InputDecoration(
-              labelText: 'Ingrese un texto',
+              labelText: 'Ingresi un article',
               border: OutlineInputBorder(),
             ),
             onSubmitted: (text) {
