@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:llista_compra/ui_widgets/comptador_enter.dart';
 
 void main() {
   runApp(MyApp());
@@ -84,7 +85,13 @@ class ElMeuBody extends StatelessWidget {
             itemBuilder: (BuildContext context, int index) {
               return ListTile(
                 leading: const Icon(Icons.shopping_cart),
-                title: Text(items[index]),
+                title: Row(children: [
+                  Text(items[index]),
+                  const Padding(
+                    padding: EdgeInsets.all(16.0),
+                    child: ComptadorEnter(),
+                  ),
+                ]),
               );
             },
           ),
