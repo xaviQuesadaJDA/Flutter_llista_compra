@@ -38,7 +38,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('TextField y ListView'),
+        title: Text('Llista compra'),
       ),
       body: ElMeuBody(
         textEditingController: _textEditingController,
@@ -84,14 +84,17 @@ class ElMeuBody extends StatelessWidget {
             itemCount: items.length,
             itemBuilder: (BuildContext context, int index) {
               return ListTile(
-                leading: const Icon(Icons.shopping_cart),
-                title: Row(children: [
-                  Text(items[index]),
-                  const Padding(
-                    padding: EdgeInsets.all(16.0),
-                    child: ComptadorEnter(),
-                  ),
-                ]),
+                leading: Icon(Icons.shopping_cart),
+                title: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(items[index]),
+                      const Padding(
+                        padding: EdgeInsets.all(0.0),
+                        child: ComptadorEnter(),
+                      ),
+                    ]),
               );
             },
           ),
