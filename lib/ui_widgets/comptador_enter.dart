@@ -34,18 +34,24 @@ class _ComptadorEnterState extends State<ComptadorEnter> {
         Text(
           '$comptador',
         ),
-        Column(
-          children: [
-            IconButton(
-              icon: Icon(Icons.add),
-              onPressed: _incrementa,
-            ),
-            IconButton(
-              icon: Icon(Icons.remove),
-              onPressed: _decrementa,
-            ),
-          ],
-        ),
+        Row(children: [
+          Column(
+            children: [
+              IconButton(
+                icon: const Icon(Icons.add),
+                onPressed: _incrementa,
+              ),
+              IconButton(
+                icon: const Icon(Icons.remove),
+                onPressed: _decrementa,
+              ),
+            ],
+          ),
+          IconButton(
+            icon: const Icon(Icons.delete),
+            onPressed: _decrementa,
+          )
+        ]),
       ],
     );
   }
