@@ -83,16 +83,19 @@ class ElMeuBody extends StatelessWidget {
           child: ListView.builder(
             itemCount: items.length,
             itemBuilder: (BuildContext context, int index) {
+              String itemText = items[index];
               return ListTile(
-                leading: Icon(Icons.shopping_cart),
+                leading: const Icon(Icons.shopping_cart),
                 title: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(items[index]),
-                      const Padding(
-                        padding: EdgeInsets.all(0.0),
-                        child: ComptadorEnter(),
+                      Text(itemText),
+                      Padding(
+                        padding: const EdgeInsets.all(0.0),
+                        child: ComptadorEnter(
+                          textArticle: itemText,
+                        ),
                       ),
                     ]),
               );

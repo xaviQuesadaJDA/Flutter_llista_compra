@@ -2,15 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:llista_compra/main.dart';
 
 class ComptadorEnter extends StatefulWidget {
-  const ComptadorEnter({super.key});
+  final String textArticle;
+  const ComptadorEnter({super.key, required this.textArticle});
 
   @override
   // ignore: library_private_types_in_public_api
-  _ComptadorEnterState createState() => _ComptadorEnterState();
+  _ComptadorEnterState createState() => _ComptadorEnterState(tA: textArticle);
 }
 
 class _ComptadorEnterState extends State<ComptadorEnter> {
   int comptador = 1;
+  String tA;
+
+  _ComptadorEnterState({required this.tA});
 
   void _incrementa() {
     setState(() {
@@ -32,7 +36,7 @@ class _ComptadorEnterState extends State<ComptadorEnter> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Text(
-          '$comptador',
+          '$comptador ' + tA,
         ),
         Row(children: [
           Column(
