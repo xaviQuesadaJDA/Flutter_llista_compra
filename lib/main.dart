@@ -34,6 +34,12 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void _removeItemFromList(String esborrat) {
+    setState(() {
+      _items.remove(esborrat);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,6 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
         textEditingController: _textEditingController,
         addItemToList: _addItemToList,
         items: _items,
+        removeItemFromList: _removeItemFromList,
       ),
     );
   }
@@ -53,12 +60,18 @@ class ElMeuBody extends StatelessWidget {
   final TextEditingController textEditingController;
   final List<String> items;
   final Function(String) addItemToList;
+  final Function(String) removeItemFromList;
 
   ElMeuBody({
     required this.textEditingController,
     required this.items,
     required this.addItemToList,
+    required this.removeItemFromList,
   });
+
+  void removeItem(String nom) {
+    removeItemFromList(nom);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -94,6 +107,10 @@ class ElMeuBody extends StatelessWidget {
                         padding: EdgeInsets.all(0.0),
                         child: ComptadorEnter(),
                       ),
+                      IconButton(
+                        icon: Icon(Icons.delete),
+                        onPressed: () => {removeItem(items[index])},
+                      )
                     ]),
               );
             },

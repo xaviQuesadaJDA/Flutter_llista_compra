@@ -20,7 +20,7 @@ class _ComptadorEnterState extends State<ComptadorEnter> {
 
   void _decrementa() {
     setState(() {
-      if (comptador > 0) {
+      if (comptador > 1) {
         comptador--;
       }
     });
@@ -46,10 +46,6 @@ class _ComptadorEnterState extends State<ComptadorEnter> {
                 onPressed: _decrementa,
               ),
             ],
-          ),
-          IconButton(
-            icon: const Icon(Icons.delete),
-            onPressed: _decrementa,
           )
         ]),
       ],
