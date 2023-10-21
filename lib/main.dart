@@ -103,13 +103,17 @@ class ElMeuBody extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(items[index]),
-                      const Padding(
-                        padding: EdgeInsets.all(0.0),
-                        child: ComptadorEnter(),
-                      ),
-                      IconButton(
-                        icon: Icon(Icons.delete),
-                        onPressed: () => {removeItem(items[index])},
+                      Row(
+                        children: [
+                          const Padding(
+                            padding: EdgeInsets.all(0.0),
+                            child: ComptadorEnter(),
+                          ),
+                          IconButton(
+                            icon: Icon(Icons.delete),
+                            onPressed: () => {removeItem(items[index])},
+                          ),
+                        ],
                       )
                     ]),
               );
