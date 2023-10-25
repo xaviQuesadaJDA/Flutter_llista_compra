@@ -3,14 +3,26 @@ import "package:flutter/material.dart";
 class LlistaArticles extends ChangeNotifier {
   final List<Article> _articles = [];
 
-  void add(Article article) {
+  void afegeix(Article article) {
     _articles.add(article);
     notifyListeners();
   }
 
-  void remove(Article article) {
+  void treu(Article article) {
     _articles.remove(article);
     notifyListeners();
+  }
+
+  Article itemAt(int index) {
+    return _articles[index];
+  }
+
+  Article getByNom(String nom) {
+    return _articles.firstWhere((article) => article.nom == nom);
+  }
+
+  int count() {
+    return _articles.length;
   }
 }
 
