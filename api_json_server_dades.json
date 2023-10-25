@@ -1,0 +1,13 @@
+{"articles":[
+    {
+        "id": 1,
+        "nom": "Bledes",
+        "quantitat": 3
+    },
+    {
+        "id": 2,
+        "nom": "Espinacs",
+        "quantitat": 2
+    }
+
+]}

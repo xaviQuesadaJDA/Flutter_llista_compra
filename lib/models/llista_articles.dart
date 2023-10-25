@@ -19,8 +19,10 @@ class LlistaArticles extends ChangeNotifier {
   }
 
   void decrementa(Article article) {
-    article.quantity -= 1;
-    notifyListeners();
+    if (article.quantity > 1) {
+      article.quantity -= 1;
+      notifyListeners();
+    }
   }
 
   Article itemAt(int index) {
