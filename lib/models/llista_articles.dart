@@ -13,6 +13,16 @@ class LlistaArticles extends ChangeNotifier {
     notifyListeners();
   }
 
+  void incrementa(Article article) {
+    article.quantity += 1;
+    notifyListeners();
+  }
+
+  void decrementa(Article article) {
+    article.quantity -= 1;
+    notifyListeners();
+  }
+
   Article itemAt(int index) {
     return _articles[index];
   }
@@ -29,7 +39,7 @@ class LlistaArticles extends ChangeNotifier {
 class Article {
   int? id;
   String nom = "";
-  int? quantity = 0;
+  int quantity = 0;
 
   Article({
     required this.id,

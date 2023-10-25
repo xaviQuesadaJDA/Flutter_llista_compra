@@ -79,12 +79,14 @@ class ElMeuBody extends StatelessWidget {
                         Text(value.itemAt(index).nom),
                         Row(
                           children: [
-                            const Padding(
+                            Padding(
                               padding: EdgeInsets.all(0.0),
-                              child: ComptadorEnter(),
+                              child: ComptadorEnter(
+                                index: index,
+                              ),
                             ),
                             IconButton(
-                              icon: Icon(Icons.delete),
+                              icon: const Icon(Icons.delete),
                               onPressed: () {
                                 value.treu(value.itemAt(index));
                               },
