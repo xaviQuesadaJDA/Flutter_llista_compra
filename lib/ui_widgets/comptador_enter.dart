@@ -9,7 +9,7 @@ class ComptadorEnter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<LlistaArticles>(
-      builder: (context, value, child) {
+      builder: (context, value, _) {
         return Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
