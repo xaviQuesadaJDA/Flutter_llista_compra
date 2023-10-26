@@ -67,34 +67,41 @@ class ElMeuBody extends StatelessWidget {
         ),
         Expanded(child: Consumer<LlistaArticles>(
           builder: (context, value, child) {
-            return ListView.builder(
-              itemCount: value.count(),
-              itemBuilder: (BuildContext context, int index) {
-                return ListTile(
-                  leading: const Icon(Icons.shopping_cart),
-                  title: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(value.itemAt(index).nom),
-                        Row(
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.all(0.0),
-                              child: ComptadorEnter(
-                                index: index,
-                              ),
-                            ),
-                            IconButton(
-                              icon: const Icon(Icons.delete),
-                              onPressed: () {
-                                value.treu(value.itemAt(index));
-                              },
-                            ),
-                          ],
-                        )
-                      ]),
-                );
+            return FutureBuilder<List<Article>>(
+              future: value.fetchArticles(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: snapshot.data!.length,
+                    itemBuilder: (context, index) {
+                      return ListTile(
+                        leading: const Icon(Icons.shopping_cart),
+                        title: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(snapshot.data![index].nom.toString()),
+                              Row(
+                                children: [
+                                  const Padding(
+                                    padding: EdgeInsets.all(0.0),
+                                    child: Placeholder(),
+                                  ),
+                                  IconButton(
+                                    icon: const Icon(Icons.delete),
+                                    onPressed: () {},
+                                  ),
+                                ],
+                              )
+                            ]),
+                      );
+                    },
+                  );
+                } else if (snapshot.hasError) {
+                  return Text('${snapshot.error}');
+                }
+                return const CircularProgressIndicator();
               },
             );
           },
