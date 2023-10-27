@@ -84,13 +84,17 @@ class ElMeuBody extends StatelessWidget {
                               Text(snapshot.data![index].nom.toString()),
                               Row(
                                 children: [
-                                  const Padding(
-                                    padding: EdgeInsets.all(0.0),
-                                    child: Placeholder(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(0.0),
+                                    child: ComptadorEnter(
+                                        index: (snapshot.data![index]).id!),
                                   ),
                                   IconButton(
                                     icon: const Icon(Icons.delete),
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      value.deleteArticle(
+                                          snapshot.data![index].id!);
+                                    },
                                   ),
                                 ],
                               )

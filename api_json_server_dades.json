@@ -1,13 +1,19 @@
-{"articles":[
+{
+  "articles": [
     {
-        "id": 1,
-        "nom": "Bledes",
-        "quantitat": 3
+      "id": 1,
+      "nom": "Bledes",
+      "quantitat": 3
     },
     {
-        "id": 2,
-        "nom": "Espinacs",
-        "quantitat": 2
+      "id": 1,
+      "nom": "Pastanaga",
+      "quantitat": 12
+    },
+    {
+      "nom": "cerveses",
+      "quantitat": 32,
+      "id": 4
     }
-
-]}
+  ]
+}
