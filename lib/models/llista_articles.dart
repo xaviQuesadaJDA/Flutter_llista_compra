@@ -30,24 +30,31 @@ class LlistaArticles extends ChangeNotifier {
 
   Future<void> afegeix(Article article) async {
     final response = await http.post(
-      Uri.parse('http://localhost:3000/articles/'),
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8'
-      },
+      Uri.parse('http://localhost:3000/articles'),
+      headers: <String, String>{'Content-Type': 'application/json'},
       body: article.toJson(),
     );
-    notifyListeners();
+    //notifyListeners();
+    if (response.statusCode == 201) {
+      notifyListeners();
+    } else {
+      throw Exception('Error al crear el nou article!');
+    }
   }
 
-  void treu(Article article) {
-    // _articles.remove(article);
-
-    notifyListeners();
-  }
-
-  void incrementa(Article article) {
-    article.quantity += 1;
-    notifyListeners();
+  Future<void> incrementa(Article article) async {
+    final int id = article.id!;
+    final response = await http.put(
+      Uri.parse('http://localhost:3000/articles/$id'),
+      headers: <String, String>{'Content-Type': 'application/json'},
+      body: article.toJson(),
+    );
+    //notifyListeners();
+    if (response.statusCode == 200) {
+      notifyListeners();
+    } else {
+      throw Exception('Error al modificar l\'article!');
+    }
   }
 
   void decrementa(Article article) {
@@ -90,13 +97,12 @@ class Article {
     quantity = json['quantitat'];
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
+  String toJson() {
+    String data = "{";
     if (id != null) {
-      data['id'] = id;
+      data += '"id": $id, ';
     }
-    data['nom'] = nom;
-    data['quantitat'] = quantity;
+    data += '"nom": "$nom", "quantitat": $quantity}';
     return data;
   }
 }

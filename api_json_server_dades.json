@@ -14,6 +14,21 @@
       "nom": "cerveses",
       "quantitat": 32,
       "id": 4
+    },
+    {
+      "nom": "cafè",
+      "quantitat": 1,
+      "id": 5
+    },
+    {
+      "nom": "Llet",
+      "quantitat": 1,
+      "id": 6
+    },
+    {
+      "nom": "kombucha",
+      "quantitat": 1,
+      "id": 7
     }
   ]
 }
