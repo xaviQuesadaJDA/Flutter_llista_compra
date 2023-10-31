@@ -2,33 +2,18 @@
   "articles": [
     {
       "id": 1,
-      "nom": "Bledes",
-      "quantitat": 3
-    },
-    {
-      "id": 1,
       "nom": "Pastanaga",
-      "quantitat": 12
+      "quantitat": 4
     },
     {
-      "nom": "cerveses",
-      "quantitat": 32,
-      "id": 4
+      "id": 3,
+      "nom": "Crispetes",
+      "quantitat": 6
     },
     {
-      "nom": "cafè",
-      "quantitat": 1,
-      "id": 5
-    },
-    {
-      "nom": "Llet",
-      "quantitat": 1,
-      "id": 6
-    },
-    {
-      "nom": "kombucha",
-      "quantitat": 1,
-      "id": 7
+      "id": 4,
+      "nom": "Oli",
+      "quantitat": 8
     }
   ]
 }

@@ -44,6 +44,7 @@ class LlistaArticles extends ChangeNotifier {
 
   Future<void> incrementa(Article article) async {
     final int id = article.id!;
+    article.quantity++;
     final response = await http.put(
       Uri.parse('http://localhost:3000/articles/$id'),
       headers: <String, String>{'Content-Type': 'application/json'},
@@ -57,10 +58,21 @@ class LlistaArticles extends ChangeNotifier {
     }
   }
 
-  void decrementa(Article article) {
+  void decrementa(Article article) async {
+    final int id = article.id!;
     if (article.quantity > 1) {
-      article.quantity -= 1;
+      article.quantity--;
+    }
+    final response = await http.put(
+      Uri.parse('http://localhost:3000/articles/$id'),
+      headers: <String, String>{'Content-Type': 'application/json'},
+      body: article.toJson(),
+    );
+    //notifyListeners();
+    if (response.statusCode == 200) {
       notifyListeners();
+    } else {
+      throw Exception('Error al modificar l\'article!');
     }
   }
 

@@ -87,7 +87,7 @@ class ElMeuBody extends StatelessWidget {
                                   Padding(
                                     padding: const EdgeInsets.all(0.0),
                                     child: ComptadorEnter(
-                                        index: (snapshot.data![index]).id!),
+                                        article: (snapshot.data![index])),
                                   ),
                                   IconButton(
                                     icon: const Icon(Icons.delete),
