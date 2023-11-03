@@ -3,9 +3,9 @@ import 'package:llista_compra/models/llista_articles.dart';
 import 'package:provider/provider.dart';
 
 class ComptadorEnter extends StatelessWidget {
-  final int index;
+  final Article article;
 
-  const ComptadorEnter({super.key, required this.index});
+  const ComptadorEnter({super.key, required this.article});
   @override
   Widget build(BuildContext context) {
     return Consumer<LlistaArticles>(
@@ -14,18 +14,18 @@ class ComptadorEnter extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              value.itemAt(index).quantity.toString(),
+              article.quantity.toString(),
             ),
             Row(children: [
               Column(
                 children: [
                   IconButton(
                     icon: const Icon(Icons.add),
-                    onPressed: () => value.incrementa(value.itemAt(index)),
+                    onPressed: () => value.incrementa(article),
                   ),
                   IconButton(
                     icon: const Icon(Icons.remove),
-                    onPressed: () => value.decrementa(value.itemAt(index)),
+                    onPressed: () => value.decrementa(article),
                   ),
                 ],
               )
