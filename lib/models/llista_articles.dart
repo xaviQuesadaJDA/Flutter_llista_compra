@@ -4,9 +4,9 @@ import "package:flutter/material.dart";
 import 'package:http/http.dart' as http;
 
 class LlistaArticles extends ChangeNotifier {
+  static const serverPath = "http://empiricsoftware.com:5000";
   Future<List<Article>> fetchArticles() async {
-    final response =
-        await http.get(Uri.parse('http://localhost:3000/articles'));
+    final response = await http.get(Uri.parse('$serverPath/articles'));
 
     if (response.statusCode == 200) {
       final List result = json.decode(response.body);
@@ -17,8 +17,7 @@ class LlistaArticles extends ChangeNotifier {
   }
 
   Future<void> deleteArticle(int id) async {
-    final response =
-        await http.delete(Uri.parse('http://localhost:3000/articles/$id'));
+    final response = await http.delete(Uri.parse('$serverPath/articles/$id'));
 
     if (response.statusCode == 200) {
       notifyListeners();
@@ -30,7 +29,7 @@ class LlistaArticles extends ChangeNotifier {
 
   Future<void> afegeix(Article article) async {
     final response = await http.post(
-      Uri.parse('http://localhost:3000/articles'),
+      Uri.parse('$serverPath/articles/0'),
       headers: <String, String>{'Content-Type': 'application/json'},
       body: article.toJson(),
     );
@@ -46,7 +45,7 @@ class LlistaArticles extends ChangeNotifier {
     final int id = article.id!;
     article.quantity++;
     final response = await http.put(
-      Uri.parse('http://localhost:3000/articles/$id'),
+      Uri.parse('$serverPath/articles/$id'),
       headers: <String, String>{'Content-Type': 'application/json'},
       body: article.toJson(),
     );
@@ -64,7 +63,7 @@ class LlistaArticles extends ChangeNotifier {
       article.quantity--;
     }
     final response = await http.put(
-      Uri.parse('http://localhost:3000/articles/$id'),
+      Uri.parse('$serverPath/articles/$id'),
       headers: <String, String>{'Content-Type': 'application/json'},
       body: article.toJson(),
     );

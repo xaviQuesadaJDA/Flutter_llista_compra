@@ -3,17 +3,17 @@
     {
       "id": 1,
       "nom": "Pastanaga",
-      "quantitat": 4
+      "quantitat": 2
     },
     {
       "id": 3,
       "nom": "Crispetes",
-      "quantitat": 6
+      "quantitat": 2
     },
     {
       "id": 4,
       "nom": "Oli",
-      "quantitat": 8
+      "quantitat": 10
     }
   ]
 }
