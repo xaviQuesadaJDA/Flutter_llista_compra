@@ -19,7 +19,7 @@ class LlistaArticles extends ChangeNotifier {
   Future<void> deleteArticle(int id) async {
     final response = await http.delete(Uri.parse('$serverPath/articles/$id'));
 
-    if (response.statusCode == 200) {
+    if (response.statusCode >= 200 && response.statusCode < 300) {
       notifyListeners();
       return;
     } else {
@@ -29,7 +29,7 @@ class LlistaArticles extends ChangeNotifier {
 
   Future<void> afegeix(Article article) async {
     final response = await http.post(
-      Uri.parse('$serverPath/articles/0'),
+      Uri.parse('$serverPath/articles'),
       headers: <String, String>{'Content-Type': 'application/json'},
       body: article.toJson(),
     );
