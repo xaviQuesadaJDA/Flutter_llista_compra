@@ -4,8 +4,7 @@ import "package:flutter/material.dart";
 import 'package:http/http.dart' as http;
 
 class LlistaArticles extends ChangeNotifier {
-  static const serverPath =
-      "http://localhost:5000"; //http://xaviq.pythonanywhere.com";
+  static const serverPath = "http://xaviq.pythonanywhere.com";
   static String apiKey = "";
   Future<List<Article>> fetchArticles() async {
     final response = await http.get(
