@@ -4,9 +4,14 @@ import "package:flutter/material.dart";
 import 'package:http/http.dart' as http;
 
 class LlistaArticles extends ChangeNotifier {
-  static const serverPath = "https://xaviq.pythonanywhere.com";
+  static const serverPath =
+      "http://localhost:5000"; //http://xaviq.pythonanywhere.com";
+  static String apiKey = "";
   Future<List<Article>> fetchArticles() async {
-    final response = await http.get(Uri.parse('$serverPath/articles'));
+    final response = await http.get(
+      Uri.parse('$serverPath/articles'),
+      headers: <String, String>{"x-api-key": apiKey},
+    );
 
     if (response.statusCode == 200) {
       final List result = json.decode(response.body);
@@ -17,7 +22,10 @@ class LlistaArticles extends ChangeNotifier {
   }
 
   Future<void> deleteArticle(int id) async {
-    final response = await http.delete(Uri.parse('$serverPath/articles/$id'));
+    final response = await http.delete(
+      Uri.parse('$serverPath/articles/$id'),
+      headers: <String, String>{"x-api-key": apiKey},
+    );
 
     if (response.statusCode >= 200 && response.statusCode < 300) {
       notifyListeners();
@@ -30,10 +38,12 @@ class LlistaArticles extends ChangeNotifier {
   Future<void> afegeix(Article article) async {
     final response = await http.post(
       Uri.parse('$serverPath/articles'),
-      headers: <String, String>{'Content-Type': 'application/json'},
+      headers: <String, String>{
+        'Content-Type': 'application/json',
+        'x-api-key': apiKey
+      },
       body: article.toJson(),
     );
-    //notifyListeners();
     if (response.statusCode == 201) {
       notifyListeners();
     } else {
@@ -46,15 +56,21 @@ class LlistaArticles extends ChangeNotifier {
     article.quantity++;
     final response = await http.put(
       Uri.parse('$serverPath/articles/$id'),
-      headers: <String, String>{'Content-Type': 'application/json'},
+      headers: <String, String>{
+        'Content-Type': 'application/json',
+        'x-api-key': apiKey
+      },
       body: article.toJson(),
     );
-    //notifyListeners();
     if (response.statusCode == 200) {
       notifyListeners();
     } else {
       throw Exception('Error al modificar l\'article!');
     }
+  }
+
+  void setApiKey(String valor) {
+    apiKey = valor;
   }
 
   void decrementa(Article article) async {
@@ -64,10 +80,12 @@ class LlistaArticles extends ChangeNotifier {
     }
     final response = await http.put(
       Uri.parse('$serverPath/articles/$id'),
-      headers: <String, String>{'Content-Type': 'application/json'},
+      headers: <String, String>{
+        'Content-Type': 'application/json',
+        'x-api-key': apiKey
+      },
       body: article.toJson(),
     );
-    //notifyListeners();
     if (response.statusCode == 200) {
       notifyListeners();
     } else {
@@ -75,19 +93,9 @@ class LlistaArticles extends ChangeNotifier {
     }
   }
 
-  Article itemAt(int index) {
-    // return _articles[index];
-    return Article(id: null, nom: "Article nul", quantity: 0);
-  }
-
   Article getByNom(String nom) {
     // return _articles.firstWhere((article) => article.nom == nom);
     return Article(id: null, nom: "Article nul", quantity: 0);
-  }
-
-  int count() {
-    // return _articles.length;
-    return 0;
   }
 }
 

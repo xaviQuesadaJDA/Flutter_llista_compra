@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:llista_compra/login.dart';
 import 'package:llista_compra/models/llista_articles.dart';
 import 'package:llista_compra/ui_widgets/comptador_enter.dart';
 import 'package:provider/provider.dart';
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(),
+      home: const PaginaLogin(),
     );
   }
 }
