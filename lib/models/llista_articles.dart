@@ -2,9 +2,11 @@ import 'dart:convert';
 
 import "package:flutter/material.dart";
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LlistaArticles extends ChangeNotifier {
   static const serverPath = "http://xaviq.pythonanywhere.com";
+  //static const serverPath = "http://localhost:5000";
   static String apiKey = "";
   Future<List<Article>> fetchArticles() async {
     final response = await http.get(
@@ -68,8 +70,10 @@ class LlistaArticles extends ChangeNotifier {
     }
   }
 
-  void setApiKey(String valor) {
+  void setApiKey(String valor) async {
     apiKey = valor;
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setString("x_api_key", valor);
   }
 
   void decrementa(Article article) async {

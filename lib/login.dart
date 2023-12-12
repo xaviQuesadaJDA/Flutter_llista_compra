@@ -4,10 +4,10 @@ import 'package:http/http.dart';
 import 'dart:convert';
 
 import 'package:llista_compra/models/llista_articles.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class PaginaLogin extends StatefulWidget {
   const PaginaLogin({super.key});
-
   @override
   State<PaginaLogin> createState() => _PaginaLoginState();
 }
@@ -17,6 +17,25 @@ class _PaginaLoginState extends State<PaginaLogin> {
   static String serverPath = LlistaArticles.serverPath;
   TextEditingController usuariController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      final prefs = await SharedPreferences.getInstance();
+      String? apiKey = prefs.getString("x_api_key");
+      if (apiKey != null) {
+        print("Tenim api_key $apiKey");
+        var llista = LlistaArticles();
+        llista.setApiKey(apiKey);
+        // ignore: use_build_context_synchronously
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const MyHomePage()),
+        );
+      }
+    });
+  }
 
   void login(String email, String password, BuildContext context) async {
     try {
